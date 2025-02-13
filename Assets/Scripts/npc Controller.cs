@@ -7,19 +7,35 @@ public class npcController : MonoBehaviour
 {
     public NavMeshAgent agent;
     public Animator animator;
-    [SerializeField] Transform[] waypoint;
-    [SerializeField] int currentWaypointIndex; public int index;
+    [SerializeField] protected Transform[] waypoint;
+    [SerializeField] protected int currentWaypointIndex;
+   [SerializeField]  protected AudioSource ManScream;
+    protected  AudioSource bulletSound;
+
+
+    public int index;
+    protected bool isDead = false;
     // Start is called before the first frame update
 
-    private void Awake()
+    protected virtual void Awake()
     {
+        GameObject soundObject = GameObject.Find("BulletHitAi");
+        if (soundObject != null)
+        {
+            ManScream = soundObject.GetComponent<AudioSource>(); 
+        }
+        GameObject bulletSoundObject = GameObject.Find("BulletFireAi");
+        if (bulletSoundObject != null)
+        {
+            bulletSound = bulletSoundObject.GetComponent<AudioSource>();
+        }
+        
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
 
     }
-    void Start()
+    protected virtual void Start()
     {
-     
         if (agent == null)
         {
             Debug.LogError("NavMesh Agent not assigned on " + gameObject.name);
@@ -42,7 +58,35 @@ public class npcController : MonoBehaviour
 
     }
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
+    {
+        MoveNPC();
+    }
+    protected virtual void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Car") || collision.gameObject.CompareTag("Tank")|| collision.gameObject.CompareTag("Bullet")) {
+            HandleDeath();
+            ManScream.Play();
+
+        }
+    }
+    protected virtual void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Bullet"))
+        {
+            HandleDeath();
+            Destroy(other.gameObject);
+            ManScream.enabled = true;
+            ManScream.Play();
+            isDead = true;
+        }
+    }
+    protected virtual void HandleDeath()
+    {
+        animator.SetBool("isDead", true);
+        StartCoroutine(DeadTime());
+    }
+    protected virtual void MoveNPC()
     {
         if (agent == null || waypoint == null || waypoint.Length == 0) return;
         if (agent.remainingDistance <= agent.stoppingDistance)
@@ -55,5 +99,10 @@ public class npcController : MonoBehaviour
             currentWaypointIndex = (currentWaypointIndex + 1) % waypoint.Length;
             agent.SetDestination(waypoint[currentWaypointIndex].position);
         }
+    }
+    protected virtual IEnumerator DeadTime()
+    {
+        yield return new WaitForSeconds(3);
+        Destroy(gameObject);
     }
 }

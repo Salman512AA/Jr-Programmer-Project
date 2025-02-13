@@ -5,7 +5,7 @@ using UnityEngine;
 public class ManSpawner : MonoBehaviour
 {
     [SerializeField] GameObject[] manPrefabs;
-    public GameObject manOnePrefab;
+     GameObject manOnePrefab;
     float minManSpawnTime = 15f;
     float maxManSpawnTime = 30f;
 

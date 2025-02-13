@@ -10,6 +10,10 @@ public class AiCarMovement : MonoBehaviour
     [SerializeField] int currentWaypointIndex;
     [SerializeField] float stopTimeThreshold = 5f; // Time before destroying the car
     private float stopTimer = 1f; // Timer to track how long the car has been stopped
+    [SerializeField] protected ParticleSystem smokeBeforeEnd;
+    [SerializeField] protected ParticleSystem particleFame;
+    [SerializeField] protected ParticleSystem explosion;
+    [SerializeField] protected AudioSource tankDestroyed;
 
     // Start is called before the first frame update
     void Start()
@@ -85,5 +89,22 @@ public class AiCarMovement : MonoBehaviour
         }
 
 
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            smokeBeforeEnd.Play();
+            particleFame.Play();
+            explosion.Play();
+            tankDestroyed.Play();
+            StartCoroutine(CarDestroy());
+        }
+        
+    }
+    IEnumerator CarDestroy()
+    {
+        yield return new WaitForSeconds(3);
+        Destroy(gameObject);
     }
 }
