@@ -4593,6 +4593,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Props_Windmill
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 0b6fafa63b69b174584365f2641586a4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.46992493
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 0b6fafa63b69b174584365f2641586a4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.080793
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 0b6fafa63b69b174584365f2641586a4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.88838917
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 0b6fafa63b69b174584365f2641586a4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.95265454
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 0b6fafa63b69b174584365f2641586a4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.0000000011326762
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 0b6fafa63b69b174584365f2641586a4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.000000009741719
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 0b6fafa63b69b174584365f2641586a4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.30405492
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 0b6fafa63b69b174584365f2641586a4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 35.403
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 0b6fafa63b69b174584365f2641586a4, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -21208,6 +21240,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: focalPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 6656676936502455113, guid: 298ec9552844d6d48951313142e1f784,
+        type: 3}
+      propertyPath: m_Mass
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6656676936502455113, guid: 298ec9552844d6d48951313142e1f784,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6849955869317752107, guid: 298ec9552844d6d48951313142e1f784,
         type: 3}

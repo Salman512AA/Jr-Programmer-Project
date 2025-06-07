@@ -66,19 +66,19 @@ public class GunAnimationController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (rb == null)
-        {
-            Debug.LogError("Rigidbody not found!");
-            return;
+            if (rb == null)
+            {
+                Debug.LogError("Rigidbody not found!");
+                return;
+            }
+
+
+            //// Move Forward
+            transform.Translate(Vector3.forward * forwardInput * speed * Time.deltaTime);
+
+            //// Rotate
+            transform.Rotate(Vector3.up, Time.deltaTime * turnSpeed * horizontalInput);
         }
-
-
-        //// Move Forward
-        transform.Translate(Vector3.forward * forwardInput * speed * Time.deltaTime);
-
-        //// Rotate
-        transform.Rotate(Vector3.up, Time.deltaTime * turnSpeed * horizontalInput);
-    }
     void Shoot()
     {
         BulletFire.Play();
